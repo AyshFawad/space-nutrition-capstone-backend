@@ -13,4 +13,4 @@ export async function seed(knex) {
   await knex("ingredients").insert(ingredientsData);
   await knex("recipe_ingredients").insert(ingredientRecipeData);
 
- }
+}

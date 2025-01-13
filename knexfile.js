@@ -1,6 +1,5 @@
 import "dotenv/config";
-console.log(process.env.DB_HOST); // Should print '127.0.0.1'
-console.log(process.env.DB_NAME);
+
 
 export default {
   client: "mysql2",
