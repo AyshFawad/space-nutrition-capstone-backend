@@ -7,7 +7,6 @@ export function up(knex) {
       .createTable("plant", (table) => {
         table.increments("id").primary();
         table.string("name").notNullable();
-        table.integer("growth_stage").notNullable();
         table.string("watering_frequency").nullable();
         table.string("temperature_range").nullable();
         table.string("humidity_level").nullable();

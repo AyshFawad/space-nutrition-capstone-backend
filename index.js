@@ -1,13 +1,14 @@
-import express from 'express';
-const app = express();
 import "dotenv/config";
+import express from "express";
+const app = express();
 
 const PORT = process.env.PORT || 5051;
 
-app.get('/', (req, res) => {
-    res.send(`<h1>Welcome to my Express App</h1>`);
-});
+import plantRoutes from "./routes/plantsRoute.js";
+
+// all users routes
+app.use("/plant", plantRoutes);
 
 app.listen(PORT, () => {
-   console.log(`app running on port ${PORT}`)
+	console.log(`running at http://localhost:${PORT}`);
 });
