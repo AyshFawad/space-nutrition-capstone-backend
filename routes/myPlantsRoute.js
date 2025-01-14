@@ -45,23 +45,28 @@ router.post('/myPlants', async (req, res) => {
       res.status(500).json({ error: 'Failed to add crop data' });
     }
   });
+  router.delete("/myPlants/:id", async (req, res) => {
+    try {
+      const myPlant = await knex("myPlants")
+        .where({ id: req.params.id })
+        .first();
+      if (!myPlant) {
+        return res.status(404).send({
+          message: `There is no plant with id: ${req.params.id}`,
+        });
+      }
+      await knex("myPlants").where({ id: req.params.id }).del();
+      res.status(200).json({
+        message: `Plant with id: ${req.params.id} has been deleted successfully.`,
+      });
+    } catch (e) {
+      res.status(500).json({
+        message: `Error getting plant ${req.params.id}`,
+        error: e.message,
+      });
+    }
+  });
 
-// router.get("/plants/:id", async (req, res) => {
-//     try {
-//       const plant = await knex("plant")
-//         .where({ id: req.params.id })
-//         .first();
-//       if (!plant) {
-//         return res.status(404).send({
-//           message: `There is no plant with id: ${req.params.id}`,
-//         });
-//       }
-//       res.json(plant);
-//     } catch (e) {
-//       res.status(500).json({
-//         message: `Error getting plant ${req.params.id}`,
-//       });
-//     }
-//   });
+
 
 export default router;
