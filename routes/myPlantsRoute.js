@@ -57,7 +57,7 @@ router.post('/myPlants', async (req, res) => {
       }
       await knex("myPlants").where({ id: req.params.id }).del();
       res.status(200).json({
-        message: `Plant with id: ${req.params.id} has been deleted successfully.`,
+        message: ` ${myPlant.name} plant has been deleted successfully.`,
       });
     } catch (e) {
       res.status(500).json({

@@ -29,6 +29,22 @@ export function up(knex) {
           .timestamp("updated_at")
           .defaultTo(knex.raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
       })
+      .createTable("myCalories", (table) => {
+        table.increments("id").primary();
+        table.integer("calories").notNullable();;
+        table.integer("carbohydrate").notNullable();
+        table.integer("cholesterol").notNullable();
+        table.integer("fat").notNullable();
+        table.integer("fiber").notNullable();
+        table.integer("potassium").notNullable();
+        table.integer("protein").notNullable();
+        table.integer("sodium").notNullable();
+        table.integer("sugar").notNullable();
+        table.timestamp("created_at").defaultTo(knex.fn.now());
+        table
+          .timestamp("updated_at")
+          .defaultTo(knex.raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
+      })
       .createTable('ingredients', (table) => {
         table.increments('id').primary(); 
         table.string('name').notNullable(); 
@@ -83,7 +99,8 @@ export function up(knex) {
       .dropTableIfExists('ingredients')  
       .dropTableIfExists('space_food_recipes')
       .dropTableIfExists('plant')
-      .dropTableIfExists('myPlants'); 
+      .dropTableIfExists('myPlants')
+      .dropTableIfExists('myCalories'); 
   } 
     
     
