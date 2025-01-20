@@ -20,12 +20,12 @@ router.get("/recipes/:id", async (req, res) => {
         .join('ingredients', 'recipe_ingredients.ingredient_id', '=', 'ingredients.id') 
         .select(
             "space_food_recipes.id as recipe_id",
-            "space_food_recipes.name",  // Keep the same name for recipe
+            "space_food_recipes.name", 
             "space_food_recipes.instructions",
             "space_food_recipes.meal_type",
             "space_food_recipes.dietary_restrictions",
-            "ingredients.id as ingredient_id", // Ingredient id
-            "ingredients.name as ingredient_name", // Ingredient name
+            "ingredients.id as ingredient_id",
+            "ingredients.name as ingredient_name", 
             "recipe_ingredients.quantity"
           )
 

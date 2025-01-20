@@ -31,7 +31,8 @@ export function up(knex) {
       })
       .createTable("myCalories", (table) => {
         table.increments("id").primary();
-        table.integer("calories").notNullable();;
+        table.string("name").notNullable();
+        table.integer("calories").notNullable();
         table.integer("carbohydrate").notNullable();
         table.integer("cholesterol").notNullable();
         table.integer("fat").notNullable();

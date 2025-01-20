@@ -13,15 +13,14 @@ router.get("/myplants", async (_req, res) => {
     }
 });
 router.post('/myPlants', async (req, res) => {
-    // Destructure the incoming data from the request body
+    
     const { id, name, watering_frequency, temperature_range, humidity_level, photo, growth_stage } = req.body;
   
-    // Validate the incoming data
+    
     if ( !name || !watering_frequency || !temperature_range || !humidity_level || !photo || !growth_stage) {
       return res.status(400).json({ error: 'All fields are required' });
     }
   
-    // Insert new crop data into the database
     try {
       const newCropData = {
         name: name,
@@ -33,12 +32,11 @@ router.post('/myPlants', async (req, res) => {
         
       };
   
-      // Insert crop data into the "crops" table
-      const insertedCrop = await knex('myPlants').insert(newCropData); // Insert and return the inserted record
+      const insertedCrop = await knex('myPlants').insert(newCropData); 
   
-      // Send response with the inserted crop data
+      
       res.status(200).json({        
-        crop: insertedCrop[0] // Return the first inserted crop data
+        crop: insertedCrop[0]
       });
     } catch (error) {
       console.error('Error inserting crop data:', error);

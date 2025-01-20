@@ -13,17 +13,12 @@ router.get("/mycalories", async (_req, res) => {
     }
 });
 router.post('/mycalories', async (req, res) => {
-    // Destructure the incoming data from the request body
-    const { id, calories, carbohydrate , cholesterol, fat, fiber, potassium, protein, sodium, sugar } = req.body;
+    
+    const { name, calories, carbohydrate , cholesterol, fat, fiber, potassium, protein, sodium, sugar } = req.body;
   
-    // Validate the incoming data
-    if ( !calories || !carbohydrate || !cholesterol || !fat || !fiber || !potassium || !protein || !sodium || !sugar) {
-      return res.status(400).json({ error: 'All  fields are required' });
-    }
-  
-    // Insert new crop data into the database
     try {
       const newData = {
+        name:name,
         calories:calories,
         carbohydrate:carbohydrate,
         cholesterol: cholesterol,
@@ -35,12 +30,10 @@ router.post('/mycalories', async (req, res) => {
         sugar:sugar        
       };
   
-      // Insert crop data into the "crops" table
-      const insertedData = await knex('myCalories').insert(newData); // Insert and return the inserted record
-  
-      // Send response with the inserted crop data
+      const insertedData = await knex('myCalories').insert(newData); 
+
       res.status(200).json({        
-        Data: insertedData[0] // Return the first inserted crop data
+        Data: insertedData[0] 
       });
     } catch (error) {
       console.error('Error inserting data:', error);
